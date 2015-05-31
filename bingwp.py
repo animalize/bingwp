@@ -72,6 +72,10 @@ class Fetcher:
                                      timeout=self.info.open_timeout
                                      )
                 ret_data = r.read()
+
+                if len(ret_data) < 10000:
+                    raise Exception("下载的文件小于10000字节")
+
                 return ret_data
 
             except Exception as e:
