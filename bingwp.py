@@ -208,19 +208,27 @@ def main():
         subprocess.call([opener, file_path])
 
     # 提取简介
-    p = r'var g_hot=(.*?);;function fadeComplete'
+#     p = r'var g_hot=(.*?);;function fadeComplete'
+#     m = re.search(p, html)
+#     if not m:
+#         raise Exception('无法用正则表达式<提取介绍文字1>')
+#     rawtext = m.group(1)
+# 
+#     p = r'".*?"'
+#     lst = re.findall(p, rawtext)
+#     if not lst:
+#         raise Exception('无法用正则表达式<提取介绍文字2>')
+
+    p = r'''(?xi)
+        class="sc_light"\s*
+        title="(.*?)(?:\(©|")
+        '''
     m = re.search(p, html)
     if not m:
-        raise Exception('无法用正则表达式<提取介绍文字1>')
-    rawtext = m.group(1)
-
-    p = r'".*?"'
-    lst = re.findall(p, rawtext)
-    if not lst:
-        raise Exception('无法用正则表达式<提取介绍文字2>')
+        raise Exception('无法用正则表达式<提取介绍文字>')
 
     # 返回介绍
-    return file_name + '\n\n' + ''.join(i.strip('"') for i in lst)
+    return file_name + '\n\n' + m.group(1) + '\n'
 
 
 from tkinter import Tk, Frame, Text, Scrollbar, Pack, Grid, Place
