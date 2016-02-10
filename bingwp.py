@@ -279,6 +279,7 @@ def showtext(message):
     y = (hs // 2) - (h // 2)
     root.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
+    root.resizable(False, False)
     root.mainloop()
 
 if __name__ == '__main__':
