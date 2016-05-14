@@ -134,11 +134,14 @@ def main():
     print('首页共%d个字符' % len(html))
 
     # 提取图片链接
-    p = r"g_img={url:'([^']+)'"
+    p = r'g_img\s*=\s*\{url:\s*"([^"]+)"'
     m = re.search(p, html)
     if not m:
         raise Exception('无法用正则表达式<提取图片地址>')
     pic_url = m.group(1)
+    
+    # 去js转义
+    pic_url = pic_url.replace('\\', '')
 
     # 提取本地file_name
     p = r'http://.*/(.*)_ZH-CN'
