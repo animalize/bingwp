@@ -15,7 +15,6 @@ myscreen = '1920x1200'
 #      网络获取
 #=====================
 
-
 class FetcherInfo:
 
     def __init__(self):
