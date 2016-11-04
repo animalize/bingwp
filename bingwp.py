@@ -15,6 +15,7 @@ myscreen = '1920x1200'
 #      网络获取
 #=====================
 
+
 class FetcherInfo:
 
     def __init__(self):
@@ -32,7 +33,7 @@ class Fetcher:
     def __init__(self, fetcher_info=None):
         if fetcher_info == None:
             fetcher_info = FetcherInfo()
-        
+
         self.referer = fetcher_info.referer
         self.info = fetcher_info
 
@@ -138,7 +139,7 @@ def main():
     if not m:
         raise Exception('无法用正则表达式<提取图片地址>')
     pic_url = m.group(1)
-    
+
     # 去js转义
     pic_url = pic_url.replace('\\', '')
 
@@ -160,16 +161,15 @@ def main():
 
     # 本地图片路径
     file_path = os.path.join('wallpapers', file_name + '.jpg')
-    file_path2 = os.path.join('wallpapers', '000'+file_name + '.jpg')
+    file_path2 = os.path.join('wallpapers', '000' + file_name + '.jpg')
 
-    
     # 替换分辨率，替换成1920x1200：
     # http://s.cn.bing.net/az/hprichbg/rb/
     # LaCazeCastle_ZH-CN9575179265_1920x1080.jpg
     p = r'(http://.*_)\d+x\d+(\.jpg)'
     new_url, n = re.subn(p, r'\g<1>' + myscreen + r'\g<2>',
                          pic_url, flags=re.I)
- 
+
     if n != 1:
         raise Exception('用正则表达式<替换分辨率>失败')
 
@@ -191,14 +191,14 @@ def main():
     # 取绝对路径
     this_path = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(this_path, file_path)
-     
+
 #     # 设为壁纸
 #     print(file_path)
 #     ret = ctypes.windll.user32.SystemParametersInfoA(
 #                 0x14, 0, file_path, 3)
 #     if not ret:
 #         raise Exception('设置失败')
-# 
+#
 #     print('设置壁纸成功')
 
     # 调用外部程序打开图片
@@ -215,7 +215,7 @@ def main():
 #     if not m:
 #         raise Exception('无法用正则表达式<提取介绍文字1>')
 #     rawtext = m.group(1)
-# 
+#
 #     p = r'".*?"'
 #     lst = re.findall(p, rawtext)
 #     if not lst:
