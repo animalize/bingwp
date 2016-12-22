@@ -142,9 +142,12 @@ def main():
 
     # 去js转义
     pic_url = pic_url.replace('\\', '')
+    
+    # url join
+    pic_url = urllib.parse.urljoin(bing_url, pic_url)
 
     # 提取本地file_name
-    p = r'http://.*/(.*)_ZH-CN'
+    p = r'.*/(.*?)_ZH-CN'
     m = re.search(p, pic_url, re.I)
     if not m:
         raise Exception('无法用正则表达式<提取要保存的文件名>')
