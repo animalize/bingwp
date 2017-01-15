@@ -142,7 +142,7 @@ def main():
 
     # 去js转义
     pic_url = pic_url.replace('\\', '')
-    
+
     # url join
     pic_url = urllib.parse.urljoin(bing_url, pic_url)
 
