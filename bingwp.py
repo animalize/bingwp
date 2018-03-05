@@ -22,8 +22,8 @@ class FetcherInfo:
         self.ua = 'bingwp'
         self.referer = ''
         self.open_timeout = 120
-        self.retry_count = 2
-        self.retry_interval = 1
+        self.retry_count = 5
+        self.retry_interval = 2
 
 
 class Fetcher:
