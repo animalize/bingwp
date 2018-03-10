@@ -22,7 +22,7 @@ class FetcherInfo:
         self.ua = 'bingwp'
         self.referer = ''
         self.open_timeout = 120
-        self.retry_count = 5
+        self.retry_count = 3
         self.retry_interval = 2
 
 
@@ -159,8 +159,8 @@ def main():
         return ''
 
     fn_lst.insert(0, file_name)
-    if len(fn_lst) > 10:
-        fn_lst = fn_lst[:10]
+    if len(fn_lst) > 3:
+        fn_lst = fn_lst[:3]
 
     # 本地图片路径
     file_path = os.path.join('wallpapers', file_name + '.jpg')
